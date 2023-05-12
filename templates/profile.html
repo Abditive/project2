@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block title%} Profile Page {%endblock%} {% block
+content %}
+<h1>Profile: {{user_information[0]}}</h1>
+<ul>
+  <li>Username: {{ user_information[0]}}</li>
+  <li>email address: {{ user_information[1]}}</li>
+</ul>
+
+{% endblock%} {% block nav %}
+<a href="/logout"> Log Out</a>
+<a href="/{{login_user}}/profile"> Profile</a>
+<a href="/{{login_user}}/create/comment"> Post a comment</a>
+{% endblock%}

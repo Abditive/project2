@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session 
-from models import users
+from models import users, comments
 import os
 import psycopg2
 import bcrypt
@@ -66,9 +66,38 @@ def log_in():
         
         return "Could not login, try again"    
     
+@app.route('/<user>/profile')
+def show_profile(user):
+    if session.get("user_id"):
+        user_info =users.show_user_profile(user)
+        return render_template('profile.html', user_information = user_info)
+    else:
+        return "access denied"
+
 @app.route('/logout')
 def log_out():
     session.clear()
     return redirect('/')
+
+@app.route('/<user>/profile')
+def show_profile(user):
+    if session.get("user_id"):
+        user_info =users.show_user_profile(user)
+        return render_template('profile.html', user_information = user_info)
+    else:
+        return "access denied"
+
+@app.route('/<user>/create/comment')
+def create_comment_form(user):
+    if session.get("user_id"):
+        user_info =users.show_user_profile(user)
+        return render_template('profile.html', user_information = user_info)
+    else:
+        return "access denied"
+@app.route('/api/<user>/create/comment')
+def create_new_comment(user):
+    new_comment = request.form.get("comment")
+    comments.insert_comment(user,new_comment)
+    return redirect('/<user>/profile')
 
 app.run(debug=True)

@@ -65,7 +65,16 @@ def log_in_user(username, password):
     else:
         print("invalid username or password1")
         return False
+    
+def show_user_profile(username):
+    query = sql_read("SELECT user_name, user_email FROM users WHERE user_name = %s;", [username])
+    print(query[0])
+    return query[0]
 
+def get_user(username):
+
+    query = sql_read("SELECT * FROM users WHERE user_name=%s;", [username])
+    return query[0]
 
 # create_user("Dexter", "bestdog@gmail.com", "123")
-log_in_user("Harry", "0000")
+# log_in_user("Harry", "0000")
