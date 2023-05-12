@@ -35,6 +35,11 @@ def show_user_comments(username):
     get_comments =sql_read("SELECT * FROM comments WHERE comment_author_id =%s", [get_user_info[0]])   
     return get_comments
 
+def show_all_comments():
+    all_comments = sql_read("SELECT * FROM comments;")
+    print(all_comments)
+    return all_comments
+
 def edit_comment():
     return
 
@@ -48,5 +53,6 @@ def get_user(username):
 
 
 # insert_comment("Ron", "hey hey")
-show_user_comments("Harry")
+# show_user_comments("Harry")
 # get_user("Harry")
+show_all_comments()
