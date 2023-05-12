@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <h1>App is working</h1>
 
-<h2>Hello {{logged_user}}</h2>
-{% endblock%} {% block title%} Front Page {%endblock%}
+<h2>Hello {{login_user}}</h2>
+{% endblock%} {% block title%} Front Page {%endblock%} {% block nav %} {% if
+login_user != "guest" %} <a href="/logout"> Log Out</a> {% else %}
+<a href="/form/login"> Log In</a>{% endif %} {% endblock%}

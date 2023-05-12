@@ -14,7 +14,7 @@ def index():
         show_user = session["user_id"]
     else:
         show_user = "guest"
-    return render_template("home.html", logged_user = show_user)
+    return render_template("home.html", login_user = show_user)
 #     connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
      # connection = psycopg2.connect(os.getenv("DATABASE_URL"))
 #     cursor = connection.cursor()
@@ -41,7 +41,7 @@ def sign_up():
     new_email = request.form.get("email")
     new_password = request.form.get("password")
     if users.create_user(new_username, new_email, new_password):
-        return render_template("profile.html")
+        return "user created"
     else:
         return "User could not be created. Try Again"
 
