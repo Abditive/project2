@@ -5,5 +5,5 @@
 {% endblock%} {% block title%} Front Page {%endblock%} {% block nav %} {% if
 login_user != "guest" %} <a href="/logout"> Log Out</a>
 <a href="/{{login_user}}/profile"> Profile</a>
-<a href="/create/community"> Create a Community</a> {% else %}
+<a href="/{{login_user}}/create/comment"> Post a Comment</a> {% else %}
 <a href="/form/login"> Log In</a>{% endif %} {% endblock%}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Write a comment as {{comment_author}}</h1>
+<form method="POST" action="/api/{{comment_author}}/create/comment">
+  <label> Comment</label>
+  <input type="text" name="comment" maxlength="140" />
+  <!-- <label> Visibility </label>
+  <select name="visibility">
+    <option value="public">Public</option>
+    <option value="private">Private</option>
+  </select> -->
+  <input type="submit" />
+</form>
+{% endblock%} {% block nav %}
+<a href="/logout"> Log Out</a>
+<a href="/{{comment_author}}/profile"> Profile</a>
+<a href="/{{comment_author}}/create/comment"> Post a comment</a>
+{% endblock%}

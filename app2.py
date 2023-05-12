@@ -70,8 +70,7 @@ def log_in():
 def show_profile(user):
     if session.get("user_id"):
         user_info =users.show_user_profile(user)
-        user_comments=comments.show_user_comments(user)
-        return render_template('profile.html', user_information = user_info, user_c=user_comments)
+        return render_template('profile.html', user_information = user_info)
     else:
         return "access denied"
 
@@ -83,14 +82,15 @@ def log_out():
 @app.route('/<user>/create/comment')
 def create_comment_form(user):
     if session.get("user_id"):
-        return render_template('create_comment.html', comment_author = user)
+        user_info =users.show_user_profile(user)
+        return render_template('profile.html', user_information = user_info)
     else:
         return "access denied"
     
-@app.route('/api/<user>/create/comment', methods = ["POST"])
+@app.route('/api/<user>/create/comment')
 def create_new_comment(user):
     new_comment = request.form.get("comment")
     comments.insert_comment(user,new_comment)
-    return redirect(f'/{user}/profile')
+    return redirect('/<user>/profile')
 
 app.run(debug=True)
