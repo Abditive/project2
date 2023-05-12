@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Log into your account</h1>
+<!-- <h2>Welcome, {{ user }}</h2> -->
+<form method="POST" action="/api/form/login">
+  <label> username </label>
+  <input type="text" name="username" />
+  <label> password </label>
+  <input type="text" name="password" />
+  <input type="submit" />
+</form>
+{% endblock%} {% block title%} Log In {%endblock%}
