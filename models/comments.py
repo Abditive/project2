@@ -4,8 +4,6 @@ import bcrypt
 
 def sql_read(read_query, parameters =[]):
     connection = psycopg2.connect(os.getenv("DATABASE_URL"))
-    # connection = psycopg2.connect(
-    #     "dbname = communio_app user = postgres password=Dexter#2020")
     cursor = connection.cursor()
     cursor.execute(read_query, parameters)
     query_results = cursor.fetchall()
@@ -16,8 +14,6 @@ def sql_read(read_query, parameters =[]):
 
 def sql_write(write_query, parameters = []):
     connection = psycopg2.connect(os.getenv("DATABASE_URL"))
-    # connection = psycopg2.connect(
-    #     "dbname = communio_app user = postgres password=Dexter#2020")
     cursor = connection.cursor()
     cursor.execute(write_query, parameters)
     connection.commit()
@@ -73,4 +69,3 @@ def get_single_comment(comment_id):
 
 # get_single_comment(13)
 # edit_comment("hello this is edited comment1", 13)
-get_single_comment(13)
