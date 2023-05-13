@@ -18,16 +18,6 @@ def index():
     all_comments=comments.show_all_comments()
 
     return render_template("home.html", login_user = show_user, comment_info = all_comments)
-#     connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
-     # connection = psycopg2.connect(os.getenv("DATABASE_URL"))
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT * FROM mytable;")
-#     results = cursor.fetchall()
-#     connection.close()
-#     return f"{results[0]}"
-
-# if __name__ == '__main__':
-#     app.run(debug=True, port=os.getenv("PORT", default=5000))
 
 @app.route('/form/signup')
 
@@ -102,12 +92,17 @@ def delete_comment(user, comment_id):
     comments.delete_comment(comment_id)
     return redirect(f'/{user}/profile')
 
-# @app.route('/api/<comment>/edit', methods = ["POST"])
-# def delete_comment1(user):
-#     deleted_comment = request.form.get()
-#     print(delete_comment)
-#     # comments.delete_comment(deleted_comment)
-#     # return redirect(f'/{user}/profile')
-#     return 
+@app.route('/<user>/<comment_id>/edit', methods = ["POST"])
+def edit_comment_form(user,comment_id):
+    comment_str = comments.get_single_comment(comment_id)
+    return render_template("edit_comment.html", comment_author=user, id_comment = comment_id, comment_string = comment_str)
+
+@app.route('/api/<user>/<comment_id>/edit', methods = ["POST"])
+def edit_comment(user,comment_id):
+    edited_comment =request.form.get("comment")
+    comments.edit_comment(edited_comment,comment_id)
+    return redirect(f'/{user}/profile')
+
+
 if __name__ == "__main__":
     app.run(debug=True)

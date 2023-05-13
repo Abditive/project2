@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Edit comment as {{comment_author}}</h1>
+<form method="POST" action="/api/{{comment_author}}/{{id_comment}}/edit">
+  <label> Edit Comment</label>
+  <input
+    type="text"
+    name="comment"
+    value="{{comment_string}}"
+    maxlength="140"
+  />
+  <input type="submit" />
+</form>
+{% endblock%} {% block nav %}
+<a href="/logout"> Log Out</a>
+<a href="/{{comment_author}}/profile"> Profile</a>
+<a href="/{{comment_author}}/create/comment"> Post a comment</a>
+{% endblock%}

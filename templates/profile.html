@@ -10,8 +10,14 @@ content %}
 <div class="post">
   <p>Comment ID: {{comment[0]}}</p>
   <p>COMMENT: {{comment[2]}}</p>
-  <form method="GET" action="/api/{{ comment[0] }}/delete">
+  <form
+    method="POST"
+    action="/api/{{ user_information[0] }}/{{ comment[0] }}/delete"
+  >
     <input type="submit" value="remove" />
+  </form>
+  <form method="POST" action="/{{user_information[0]}}/{{comment [0]}}/edit">
+    <input type="submit" value="Edit" />
   </form>
   <!-- <form method="POST" action="/api/comment/edit">
     <input type="submit" value="edit" name="{{ comment [0]}}" />
