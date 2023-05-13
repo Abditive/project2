@@ -1,31 +1,66 @@
+/* Body styles */
 body {
-  background-color: #f9e6c9;
+  background-color: #f5f3b5;
   font-family: Arial, sans-serif;
-  color: #5c3c21;
+  color: #333333;
+}
+
+header {
+  background-color: #2d4059;
+  color: #ffffff;
+  padding: 20px;
 }
 
 /* Navigation styles */
 nav {
-  background-color: #d8a48f;
+  background-color: #ffd662;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 nav a {
-  color: #ffffff;
+  color: #2d4059;
   text-decoration: none;
+  margin-top: 20px;
+  font-size: 24px;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
-/* Content styles */
 #content {
   margin: 20px;
-  background-color: #ffe8d6;
+  background-color: #ffffff;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+#show_content {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.post {
+  background-color: #9fdddb;
+  max-width: 1000px;
+  max-height: 100px;
+  margin: auto;
+  border-radius: 5px;
+}
+#logo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 54px;
+}
+.user_name_top {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+}
+.comment_text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  display: inline;
 }

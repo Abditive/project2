@@ -36,7 +36,7 @@ def show_user_comments(username):
     return get_comments
 
 def show_all_comments():
-    all_comments = sql_read("SELECT * FROM comments;")
+    all_comments = sql_read("SELECT user_name, comment_content FROM users JOIN comments ON users.user_id = comments.comment_author_id;;")
     print(all_comments)
     return all_comments
 

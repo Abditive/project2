@@ -12,9 +12,13 @@ app.config["SECRET_KEY"] = secret_key
 def index(): 
     if session.get("user_id", ""):
         show_user = session["user_id"]
+
     else:
         show_user = "guest"
-    return render_template("home.html", login_user = show_user)
+
+    all_comments=comments.show_all_comments()
+
+    return render_template("home.html", login_user = show_user, comment_info = all_comments)
 #     connection = psycopg2.connect(host=os.getenv("PGHOST"), user=os.getenv("PGUSER"), password=os.getenv("PGPASSWORD"), port=os.getenv("PGPORT"), dbname=os.getenv("PGDATABASE"))
      # connection = psycopg2.connect(os.getenv("DATABASE_URL"))
 #     cursor = connection.cursor()
@@ -89,6 +93,12 @@ def create_comment_form(user):
     
 @app.route('/api/<user>/create/comment', methods = ["POST"])
 def create_new_comment(user):
+    new_comment = request.form.get("comment")
+    comments.insert_comment(user,new_comment)
+    return redirect(f'/{user}/profile')
+
+@app.route('/api/comment/delete', methods = ["POST"])
+def delete_comment(user):
     new_comment = request.form.get("comment")
     comments.insert_comment(user,new_comment)
     return redirect(f'/{user}/profile')

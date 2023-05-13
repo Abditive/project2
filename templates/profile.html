@@ -8,10 +8,8 @@ content %}
 
 {% for comment in user_c %}
 <p>COMMENT: {{comment[2]}}</p>
-
-{% endfor %}
-<p>{{user_c}}</p>
-{% endblock%} {% block nav %}
+<button>Delete Comment</button>
+{% endfor %} {% endblock%} {% block nav %}
 <a href="/logout"> Log Out</a>
 <a href="/{{user_information[0]}}/profile"> Profile</a>
 <a href="/{{user_information[0]}}/create/comment"> Post a comment</a>

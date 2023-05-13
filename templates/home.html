@@ -1,9 +1,21 @@
 {% extends 'base.html' %} {% block content %}
-<h1>App is working</h1>
-
-<h2>Hello {{login_user}}</h2>
-{% endblock%} {% block title%} Front Page {%endblock%} {% block nav %} {% if
-login_user != "guest" %} <a href="/logout"> Log Out</a>
+<div>
+  <h2>Hello {{login_user}}</h2>
+  <h2>Posts</h2>
+</div>
+{% for data in comment_info %}
+<div id="show_comments">
+  <!-- NEED TO ADD CLAUSE TO CHECK IF USER LOGED IN TO GIVE ABILITY TO GIVE LIKES -->
+  <div class="post">
+    <p><span class="user_name_top">@{{data[0]}}</span>:</p>
+    <p class="comment_text">{{data[1]}}</p>
+    {% if login_user != "guest" %}
+    <button>Delete Comment</button>
+    {% endif %}
+  </div>
+</div>
+{% endfor %} {% endblock%} {% block title%} Front Page {%endblock%} {% block nav
+%} {% if login_user != "guest" %} <a href="/logout"> Log Out</a>
 <a href="/{{login_user}}/profile"> Profile</a>
 <a href="/{{login_user}}/create/comment"> Post a Comment</a> {% else %}
 <a href="/form/login"> Log In</a>{% endif %} {% endblock%}
