@@ -1,12 +1,13 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Log into your account</h1>
-<!-- <h2>Welcome, {{ user }}</h2> -->
-<form method="POST" action="/api/form/login">
-  <label> username </label>
-  <input type="text" name="username" />
-  <label> password </label>
-  <!-- need to add characters check to password -->
-  <input type="password" name="password" />
-  <input type="submit" />
-</form>
+<h1 class="form_container">Log into your account</h1>
+<div class="form_container">
+  <form method="POST" action="/api/form/login">
+    <label> username </label>
+    <input type="text" name="username" />
+    <label> password </label>
+    <input type="password" name="password" />
+    <input type="submit" />
+  </form>
+</div>
+
 {% endblock%} {% block title%} Log In {%endblock%}

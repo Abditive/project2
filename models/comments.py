@@ -3,8 +3,7 @@ import os
 import bcrypt
 
 def sql_read(read_query, parameters =[]):
-    connection = psycopg2.connect(
-        "dbname = communio_app user = postgres password=Dexter#2020")
+    connection = psycopg2.connect(os.getenv("DATABASE_URL"))
     cursor = connection.cursor()
     cursor.execute(read_query, parameters)
     query_results = cursor.fetchall()
@@ -14,8 +13,7 @@ def sql_read(read_query, parameters =[]):
 
 
 def sql_write(write_query, parameters = []):
-    connection = psycopg2.connect(
-        "dbname = communio_app user = postgres password=Dexter#2020")
+    connection = psycopg2.connect(os.getenv("DATABASE_URL"))
     cursor = connection.cursor()
     cursor.execute(write_query, parameters)
     connection.commit()
@@ -43,8 +41,10 @@ def show_all_comments():
 def edit_comment():
     return
 
-def delete_comment():
-    return
+def delete_comment(comment_id):
+    sql_write("DELETE FROM comments WHERE comment_id =%s;", [comment_id])
+    print("comment deleted")
+    return True
 
 def get_user(username):
     query = sql_read("SELECT * FROM users WHERE user_name=%s;", [username])
@@ -55,4 +55,5 @@ def get_user(username):
 # insert_comment("Ron", "hey hey")
 # show_user_comments("Harry")
 # get_user("Harry")
-show_all_comments()
+# delete_comment(12)
+# show_all_comments()

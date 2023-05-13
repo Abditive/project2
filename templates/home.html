@@ -9,9 +9,6 @@
   <div class="post">
     <p><span class="user_name_top">@{{data[0]}}</span>:</p>
     <p class="comment_text">{{data[1]}}</p>
-    {% if login_user != "guest" %}
-    <button>Delete Comment</button>
-    {% endif %}
   </div>
 </div>
 {% endfor %} {% endblock%} {% block title%} Front Page {%endblock%} {% block nav

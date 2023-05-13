@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Create an account</h1>
-<!-- <h2>Welcome, {{ user }}</h2> -->
-<form method="POST" action="/api/form/signup">
-  <label> username </label>
-  <input type="text" name="username" />
-  <label> email </label>
-  <input type="text" name="email" />
-  <label> password </label>
-
-  <input type="text" name="password" />
-  <input type="submit" />
-</form>
+<h1 class="form_container">Create an account</h1>
+<div class="form_container">
+  <form method="POST" action="/api/form/signup">
+    <label> username </label>
+    <input type="text" name="username" />
+    <label> email </label>
+    <input type="text" name="email" />
+    <label> password </label>
+    <input type="text" name="password" />
+    <input type="submit" />
+  </form>
+</div>
 {% endblock%} {% block title%} Sign Up {%endblock%}

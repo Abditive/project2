@@ -8,7 +8,16 @@ content %}
 
 {% for comment in user_c %}
 <div class="post">
+  <p>Comment ID: {{comment[0]}}</p>
   <p>COMMENT: {{comment[2]}}</p>
+  <form method="POST" action="/api/comment/delete">
+    <input type="hidden" name="{{comment[2]}}" />
+    <input type="hidden" name="{{comment[0]}}" />
+    <input type="submit" value="remove" />
+  </form>
+  <!-- <form method="POST" action="/api/comment/edit">
+    <input type="submit" value="edit" name="{{ comment [0]}}" />
+  </form> -->
 </div>
 {% endfor %} {% endblock%} {% block nav %}
 <a href="/logout"> Log Out</a>

@@ -15,7 +15,6 @@ def index():
 
     else:
         show_user = "guest"
-
     all_comments=comments.show_all_comments()
 
     return render_template("home.html", login_user = show_user, comment_info = all_comments)
@@ -33,21 +32,20 @@ def index():
 @app.route('/form/signup')
 
 def sign_up_form():
-
+    
     return render_template("sign_up_form.html")
 
 @app.route('/api/form/signup', methods = ["POST"])
 
 def sign_up():
 
-    # NEED TO ADD check for existing email and usernames
     new_username = request.form.get("username")
     new_email = request.form.get("email")
     new_password = request.form.get("password")
     if users.create_user(new_username, new_email, new_password):
-        return "user created"
+        return redirect('/')
     else:
-        return "User could not be created. Try Again"
+        return redirect('/')
 
 
 @app.route('/form/login')
@@ -62,13 +60,13 @@ def log_in():
     username = request.form.get("username")
     password = request.form.get("password")
     user_data = users.log_in_user(username, password)
-    # print(user_data[1])
+    
     if user_data:
         session["user_id"] = user_data[1]
         return redirect('/')
     else:
         
-        return "Could not login, try again"    
+        return redirect('/form/login')  
     
 @app.route('/<user>/profile')
 def show_profile(user):
@@ -97,10 +95,21 @@ def create_new_comment(user):
     comments.insert_comment(user,new_comment)
     return redirect(f'/{user}/profile')
 
-@app.route('/api/comment/delete', methods = ["POST"])
-def delete_comment(user):
-    new_comment = request.form.get("comment")
-    comments.insert_comment(user,new_comment)
-    return redirect(f'/{user}/profile')
 
-app.run(debug=True)
+
+@app.route('/api/comment/delete', methods = ["POST"])
+def delete_comment():
+    deleted_comment = request.form.get()
+    print (deleted_comment)
+    # comments.insert_comment(user,new_comment)
+    return "it works"
+
+# @app.route('/api/<comment>/edit', methods = ["POST"])
+# def delete_comment1(user):
+#     deleted_comment = request.form.get()
+#     print(delete_comment)
+#     # comments.delete_comment(deleted_comment)
+#     # return redirect(f'/{user}/profile')
+#     return 
+if __name__ == "__main__":
+    app.run(debug=True)
