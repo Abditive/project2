@@ -97,7 +97,7 @@ def create_new_comment(user):
 
 
 
-@app.route('/api/<user>/<comment_id>/delete')
+@app.route('/api/<user>/<comment_id>/delete', methods = ["POST"])
 def delete_comment(user, comment_id):
     comments.delete_comment(comment_id)
     return redirect(f'/{user}/profile')
