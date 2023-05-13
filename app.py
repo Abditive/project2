@@ -97,12 +97,10 @@ def create_new_comment(user):
 
 
 
-@app.route('/api/<comment_id>/delete')
-def delete_comment(comment_id):
-
-    print (comment_id)
-    # comments.insert_comment(user,new_comment)
-    return "it works"
+@app.route('/api/<user>/<comment_id>/delete')
+def delete_comment(user, comment_id):
+    comments.delete_comment(comment_id)
+    return redirect(f'/{user}/profile')
 
 # @app.route('/api/<comment>/edit', methods = ["POST"])
 # def delete_comment1(user):
