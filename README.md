@@ -23,7 +23,7 @@ Despite these challenges, I am pleased with the end result and look forward to c
 
 ## Usage
 
-<!-- You can access the hosted version of the application at https://communio.io. -->
+You can access the hosted version of the application at https://project2-myn5.onrender.com/
 
 Upon accessing the application, you will be prompted to create an account or login if you already have one. Once you are logged in, you can create posts, view posts from other users, and comment on them.
 
