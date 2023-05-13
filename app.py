@@ -97,10 +97,10 @@ def create_new_comment(user):
 
 
 
-@app.route('/api/comment/delete', methods = ["POST"])
-def delete_comment():
-    deleted_comment = request.form.get()
-    print (deleted_comment)
+@app.route('/api/<comment_id>/delete', methods = ["POST"])
+def delete_comment(comment_id):
+
+    print (comment_id)
     # comments.insert_comment(user,new_comment)
     return "it works"
 
