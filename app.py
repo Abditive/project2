@@ -97,7 +97,7 @@ def create_new_comment(user):
 
 
 
-@app.route('/api/<comment_id>/delete', methods = ["POST"])
+@app.route('/api/<comment_id>/delete')
 def delete_comment(comment_id):
 
     print (comment_id)
